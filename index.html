@@ -4,45 +4,94 @@
   <meta charset="UTF-8">
   <title>BCSO Login</title>
   <style>
+    /* Animierter Hintergrund */
     body {
-      background-color: #0c1a1e;
-      color: #ffffff;
-      font-family: Arial, sans-serif;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+      margin: 0;
       height: 100vh;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1a2a3a);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
     }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .login-container {
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 40px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
+      animation: slideIn 1.2s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(-50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .login-container img {
+      width: 120px;
+      margin-bottom: 20px;
+    }
+
     input, button {
       padding: 10px;
-      margin: 8px;
-      width: 250px;
+      margin: 10px 0;
+      width: 260px;
       border: none;
       border-radius: 4px;
+      font-size: 16px;
     }
+
+    input {
+      background-color: #ffffff;
+      color: #000000;
+    }
+
     button {
       background-color: #2f4f4f;
       color: white;
       cursor: pointer;
+      transition: transform 0.1s ease;
     }
-    h2 {
-      margin-bottom: 20px;
+
+    button:active {
+      transform: scale(0.97);
     }
   </style>
 </head>
 <body>
-  <h2>BCSO Login</h2>
-  <input type="text" id="username" placeholder="Benutzername">
-  <input type="password" id="password" placeholder="Passwort">
-  <button onclick="login()">Login</button>
+  <div class="login-container">
+    <!-- Logo des BCSO -->
+    <img src="https://deinbenutzername.github.io/deinprojekt/bcso-logo.png" alt="BCSO Logo">
+
+    <h2>BCSO Login</h2>
+    <input type="text" id="username" placeholder="Benutzername">
+    <input type="password" id="password" placeholder="Passwort">
+    <br>
+    <button onclick="login()">Login</button>
+  </div>
 
   <script>
     function login() {
       const user = document.getElementById('username').value;
       const pass = document.getElementById('password').value;
 
-      // Benutzername & Passwort definieren (nach Wunsch anpassen)
       if (user === "bcso" && pass === "1234") {
         window.location.href = "https://sites.google.com/view/bcso-san-andreas/login-seiten/instructor";
       } else {
