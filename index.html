@@ -77,7 +77,7 @@
 </head>
 <body>
   <div class="login-container">
-    <!-- BCSO Logo mit direktem raw-Link -->
+    <!-- Logo mit funktionierendem RAW-Link -->
     <img src="https://raw.githubusercontent.com/CommanderJackR/bcso-login/main/bcso-logo.png" alt="BCSO Logo">
 
     <h2>BCSO Login</h2>
@@ -89,11 +89,16 @@
 
   <script>
     function login() {
-      const user = document.getElementById('username').value;
+      const user = document.getElementById('username').value.toLowerCase();
       const pass = document.getElementById('password').value;
 
-      if (user === "bcso" && pass === "1234") {
+      // Login-Rollen und Weiterleitungen
+      if (user === "BCSO-Instructor" && pass === "instr123") {
         window.location.href = "https://sites.google.com/view/bcso-san-andreas/login-seiten/instructor";
+      } else if (user === "BCSO-Supervisor" && pass === "super123") {
+        window.location.href = "https://sites.google.com/view/bcso-san-andreas/login-seiten/supervisor";
+      } else if (user === "BCSO-Leitung" && pass === "bcso123") {
+        window.location.href = "https://sites.google.com/view/bcso-san-andreas/login-seiten/leitungsebene";
       } else {
         alert("Falsche Zugangsdaten!");
       }
