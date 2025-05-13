@@ -93,11 +93,11 @@
       const pass = document.getElementById('password').value;
 
       // Login-Rollen und Weiterleitungen
-      if (user === "BCSO-Instructor" && pass === "instr123") {
+      if (user === "instructor" && pass === "instr123") {
         window.location.href = "https://sites.google.com/view/bcso-san-andreas/login-seiten/instructor";
-      } else if (user === "BCSO-Supervisor" && pass === "super123") {
+      } else if (user === "supervisor" && pass === "super123") {
         window.location.href = "https://sites.google.com/view/bcso-san-andreas/login-seiten/supervisor";
-      } else if (user === "BCSO-Leitung" && pass === "bcso123") {
+      } else if (user === "leitung" && pass === "admin123") {
         window.location.href = "https://sites.google.com/view/bcso-san-andreas/login-seiten/leitungsebene";
       } else {
         alert("Falsche Zugangsdaten!");
