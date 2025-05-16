@@ -2,107 +2,134 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LSPD Login</title>
   <style>
-    /* Animierter Hintergrund */
     body {
       margin: 0;
-      height: 100vh;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1a2a3a);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #001f3f, #0074D9);
+      overflow: hidden;
     }
 
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    .background-animation {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(0, 0, 0, 0.2), transparent 70%);
+      animation: pulse 5s ease-in-out infinite;
+      z-index: 0;
     }
 
-    .login-container {
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 40px;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 0 15px rgba(0,0,0,0.5);
-      animation: slideIn 1.2s ease-out;
-    }
-
-    @keyframes slideIn {
-      from {
-        opacity: 0;
-        transform: translateY(-50px);
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 0.7;
       }
-      to {
+      50% {
+        transform: scale(1.05);
         opacity: 1;
-        transform: translateY(0);
       }
     }
 
-    .login-container img {
-      width: 120px;
-      margin-bottom: 20px;
+    .container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: white;
+      text-align: center;
     }
 
-    input, button {
+    .logo {
+      width: 150px;
+      margin-bottom: 20px;
+      animation: fadeIn 2s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    form {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px black;
+      animation: fadeIn 3s ease-in-out forwards;
+    }
+
+    input[type="text"],
+    input[type="password"] {
       padding: 10px;
       margin: 10px 0;
-      width: 260px;
       border: none;
-      border-radius: 4px;
-      font-size: 16px;
+      border-radius: 5px;
+      width: 100%;
+      font-size: 1rem;
     }
 
-    input {
-      background-color: #ffffff;
-      color: #000000;
-    }
-
-    button {
-      background-color: #2f4f4f;
+    input[type="submit"] {
+      background-color: #0074D9;
       color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 5px;
       cursor: pointer;
-      transition: transform 0.1s ease;
+      transition: background-color 0.3s ease;
     }
 
-    button:active {
-      transform: scale(0.97);
+    input[type="submit"]:hover {
+      background-color: #005fa3;
     }
   </style>
 </head>
 <body>
-  <div class="login-container">
-    <!-- Logo mit funktionierendem RAW-Link -->
-    <img src="https://raw.githubusercontent.com/CommanderJackR/bcso-login/main/bcso-logo.png" alt="BCSO Logo">
 
-    <h2>BCSO Login</h2>
-    <input type="text" id="username" placeholder="Benutzername">
-    <input type="password" id="password" placeholder="Passwort">
-    <br>
-    <button onclick="login()">Login</button>
+  <div class="background-animation"></div>
+
+  <div class="container">
+    <img src="https://raw.githubusercontent.com/CommanderJackR/lspd-login/main/lspd-logo.png" alt="LSPD Logo" class="logo">
+    <h1>Los Santos Police Department</h1>
+    <p>Interner Zugriff – Autorisierte Benutzer</p>
+
+    <form onsubmit="return login()">
+      <input type="text" id="username" placeholder="Benutzername" required>
+      <input type="password" id="password" placeholder="Passwort" required>
+      <input type="submit" value="Login">
+    </form>
   </div>
 
   <script>
     function login() {
-      const user = document.getElementById('username').value.toLowerCase();
-      const pass = document.getElementById('password').value;
+      const username = document.getElementById('username').value.toLowerCase();
+      const password = document.getElementById('password').value;
 
-      // Login-Rollen und Weiterleitungen
-      if (user === "instructor" && pass === "instr123") {
-        window.location.href = "https://sites.google.com/view/bcso-san-andreas/login-seiten/instructor";
-      } else if (user === "supervisor" && pass === "super123") {
-        window.location.href = "https://sites.google.com/view/bcso-san-andreas/login-seiten/supervisor";
-      } else if (user === "leitung" && pass === "admin123") {
-        window.location.href = "https://sites.google.com/view/bcso-san-andreas/login-seiten/leitungsebene";
+      if (username === 'instructor' && password === 'instructor123') {
+        window.location.href = "https://sites.google.com/view/lspd-san-andreas/login-seiten/instructor";
+      } else if (username === 'supervisor' && password === 'supervisor123') {
+        window.location.href = "https://sites.google.com/view/lspd-san-andreas/login-seiten/supervisor";
+      } else if (username === 'leitung' && password === 'leitung123') {
+        window.location.href = "https://sites.google.com/view/lspd-san-andreas/login-seiten/leitungsebene";
       } else {
-        alert("Falsche Zugangsdaten!");
+        alert("Ungültiger Benutzername oder Passwort");
       }
+
+      return false;
     }
   </script>
+
 </body>
 </html>
